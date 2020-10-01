@@ -50,3 +50,31 @@ Dalam Spring Framework, bila berhubungan dengan path segment akan berurusan deng
 - @RequestParam sebaiknya dipakai bila kita ingin membaca values dari Request Parameters dari sebuah pemanggilan URI
 - @PathVariable sebaiknya dipakai bila kita ingin membaca value dari sebuah path yang menjadi bagian dari URI
 (Sumber: http://www.nullpointer.at/2017/11/22/requestparam-queryparam-pathvariable-pathparam/; https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/bind/annotation/PathVariable.html; https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/bind/annotation/RequestParam.html)
+
+
+## Tutorial 2
+1. Cobalah untuk menambahkan sebuah resep dengan mengakses link berikut: http://localhost:8080/resep/add?noResep=1&namaDokter=Papa%20APAP&namaPasien=Quanta%20Fasilkomcatatan=Semangat Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi
+
+Yang terjadi adalah error. Error ini terjadi sebab kita belum mendefinisikan file template yang dituju. Sehingga ketika method tersebut sampai ke return "add-resep", dia akan merefer sesuatu yang tidak ada. Sebab add-resep.html masih belum dibuat sebelumnya. Sehingga untuk mengatasi error ini diperlukan membuat add-resep.html pada folder resources>templates
+
+2. Menurut kamu anotasi @Autowired pada class Controller tersebut merupakan implementasi dari konsep apa? Dan jelaskan secara singkat cara kerja @Autowired tersebut dalam konteks service dan controller yang telah kamu buat
+
+@Autowired disini menerapkan konsep Dependency Injection sebagaimana sudah dipelajari pada pekan yang lalu. Dengan menggunakan anotasi ini, dapat membantu kita untuk melakukan otomatisasi dalam dependency injection. Di dalam class resepController, syntax 'private ResepService resepService' yang dipasangkan dengan @Autowired, memungkinkan kita untuk mengakses setiap properties, setters, getters, dan constructors yang ada pada class resepService.
+(Sumber: https://www.baeldung.com/spring-autowire)
+
+3. Cobalah untuk menambahkan sebuah resep dengan mengakses link berikut: http://localhost:8080/resep/add?noResep=1&namaDokter=Papa%20APAP&namaPasien=Quanta%20Fasilkom Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi.
+
+Ketika mengakses 'http://localhost:8080/resep/add?noResep=1&namaDokter=Papa%20APAP&namaPasien=Quanta%20F
+asilkom' terjadi error. Error ini terjadi sebab ada argumen yang tidak terisi, yakni catatan. Pada class resepController, terdapat @RequestParam dengan value = "catatan" dan kondisinya adalah true. Hal ini menandakan bahwa "catatan" tidak boleh kosong. Dalam pemanggilan link diatas, hanya berhenti pada value = "namaPasien". Sehingga ketika sistem mencoba mencari isi dari value "catatan" menjadi tidak ditemukan.
+
+4. Jika Papa APAP ingin melihat resep untuk pasien yang bernama Quanta, link apa yang harus diakses?
+
+Berdasarkan instruksi yang sudah diberikan pada soal, saya tidak mengimplementasikan sebuah method yang bisa mencari resep berdasarkan namaPasien. Implementasinya sama saja dengan mencari resep dengan noResep, hanya saja ada sedikit perubahan pada parameternya.
+Oleh sebab itu, saya akan mencoba membantu papa pada soal ini melalui alternatif cara lain. Pertama, papa bisa mengunjungi http://localhost:8080/resep/viewall untuk melihat semua data resep yang ada. Setelah mengetahui nomor resep dari pasien yang papa cari, papa dapat menuju ke link ini http://localhost:8080/resep/view/no-resep/{noResep}. Bagian {noResep} diisi sesuai dengan data yang sudah dilihat papa tadi. Bila noResep nya 1 maka link menjadi http://localhost:8080/resep/view/no-resep/1 , bila noResep nya 2 maka link menjadi http://localhost:8080/resep/view/no-resep/2 , dan seterusnya.
+
+5. Tambahkan 1 contoh resep lainnya sesukamu. Lalu cobalah untuk mengakses http://localhost:8080/resep/viewall , apa yang akan ditampilkan? Sertakan juga bukti screenshotmu.
+
+Saya menambahkan sebuah resep dengan link berikut:
+http://localhost:8080/resep/add?noResep=2&namaDokter=dr%20Yobelio&namaPasien=PAPA%20baik&catatan=Cepat%20sembuh%20dong%20pa!
+kemudian ketika saya mengakses http://localhost:8080/resep/viewall akan muncul semua resep yang sudah tersimpan. Resep itu berarti ada 1 resep dari contoh soal, dan 1 resep buatan saya sendiri. Berikut adalah hasil screenshot dari hasil pengaksesan viewall yang akan saya sertakan dalam bentuk link drive: https://drive.google.com/file/d/1-_NUXm7IDzJnaGJaoZclvwnvI1nQYLHr/view?usp=sharing
+
