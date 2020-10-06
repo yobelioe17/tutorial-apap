@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Error</title>
+</head>
+<body>
+<h2>Resep berhasil dihapus</h2>
+<p th:text="'Resep dengan nomor resep ' + ${nomorResep} + ' berhasil dihapus dari daftar'"></p>
+<a href="/resep/viewall">Kembali</a>
+</body>
+</html>
