@@ -4,8 +4,8 @@
     <title>Error</title>
 </head>
 <body>
-<h2>Nomor Resep tidak ditemukan! Silakan teliti kembali</h2>
+<h2 th:text="${pesan}"></h2>
 
-<a href="/resep/viewall">Kembali</a>
+<td><a th:href="@{/}">kembali</a></td>
 </body>
 </html>
