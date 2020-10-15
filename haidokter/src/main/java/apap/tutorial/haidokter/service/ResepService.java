@@ -1,5 +1,6 @@
 package apap.tutorial.haidokter.service;
 
+import apap.tutorial.haidokter.model.ObatModel;
 import apap.tutorial.haidokter.model.ResepModel;
 
 import java.util.List;
@@ -8,11 +9,16 @@ public interface ResepService {
     // Method untuk menambah Resep
     void addResep(ResepModel resep);
 
+    void deleteResep(ResepModel resep) throws Exception;
+
     // Method untuk mendapatkan semua data Resep yang telah tersimpan
     List<ResepModel> getResepList();
 
     // Method untuk mendapatkan data sebuah resep berdasarkan nomor resep
-    ResepModel getResepByNomorResep(String noResep);
+    ResepModel getResepByNomorResep(Long noResep);
 
-    List<ResepModel> deleteResepByNomorResep(String noResep);
+    // Method untuk update resep
+    ResepModel updateResep(ResepModel resepModel);
+
+
 }

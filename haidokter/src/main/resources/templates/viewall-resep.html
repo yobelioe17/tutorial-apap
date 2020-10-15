@@ -5,12 +5,13 @@
 </head>
 <body>
 <h2>Daftar Seluruh Resep</h2>
-    <div th:each="resep: ${listResep}">
+    <div th:each="resep: ${resepList}">
         <h3 th:text="'Nomor Resep: ' + ${resep.noResep}"></h3>
         <h3 th:text="'Nama Dokter: ' + ${resep.namaDokter}"></h3>
         <h3 th:text="'Nama Pasien: ' + ${resep.namaPasien}"></h3>
         <h3 th:text="'Catatan: ' + ${resep.catatan}"></h3>
         <hr>
     </div>
+<td><a th:href="@{/}">kembali</a></td>
 </body>
 </html>

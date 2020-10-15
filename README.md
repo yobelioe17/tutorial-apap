@@ -78,3 +78,39 @@ Saya menambahkan sebuah resep dengan link berikut:
 http://localhost:8080/resep/add?noResep=2&namaDokter=dr%20Yobelio&namaPasien=PAPA%20baik&catatan=Cepat%20sembuh%20dong%20pa!
 kemudian ketika saya mengakses http://localhost:8080/resep/viewall akan muncul semua resep yang sudah tersimpan. Resep itu berarti ada 1 resep dari contoh soal, dan 1 resep buatan saya sendiri. Berikut adalah hasil screenshot dari hasil pengaksesan viewall yang akan saya sertakan dalam bentuk link drive: https://drive.google.com/file/d/1-_NUXm7IDzJnaGJaoZclvwnvI1nQYLHr/view?usp=sharing
 
+## Tutorial 3
+1. Pada class ResepDb , terdapat method findByNoResep , apakah kegunaan dari method tersebut?
+
+Method findByNoResep pada ResepDb memiliki tipe Optional. Maksudnya adalah belum tentu juga method tersebut diimplementasikan. Method tersebut berfungsi untuk membantu kita dalam mengakses data di database berdasarkan NoResep. Mengapa harus nomor resep? Sebab itu merupakan primary key yang menjadi value unik dalam database resep. Sehingga menjadi preferensi yang baik ketika ingin mengambil data dari sana.
+
+2. Pada class ResepController , jelaskan perbedaan method addResepFormPage dan addResepSubmit ?
+
+method addResepFormPage memiliki method get dimana fungsi method ini adalah mendapatkan input yang akan diberikan user. Dalam konteks ini, ketika terjadi penambahan resep, maka seorang user akan masuk kedalam tampilan form-add-resep.html untuk mengisi field field yang tersedia. Dari form ini juga didapati data yang hendak dimasukkan ke database. Sedangkan method addResepSubmit merupakan method post yang berfungsi untuk mengirimkan hasil input yang sudah diberikan. Ketika user berhasil mengisi data pada form, akan dialihkan ke halaman add-resep.html yang memberikan informasi bahwa pengisian sukses, dan sistem akan memasukkan datanya kedalam database.
+
+3. Jelaskan kegunaan dari JPA Repository !
+
+JPA merupakan akronim dari Java Persistence API. JPA ini membantu user dalam mengakses database menggunakan Java. Bilamana yang saya ketahui mengakses database menggunakan syntax MySQL atau PostgreSQL, sekarang saya jadi tambah tau kalau database bisa dimanipulasi juga dengan JPA. Dengan menggunakan JPA, membantu pengguna untuk dapat terfokus pada tabel-tabel yang sudah didefinisikan pada database. 
+(Sumber: https://daengweb.id/serial-spring-boot-crud-dengan-spring-data-jpa)
+
+4. Sebutkan dan jelaskan di bagian kode mana sebuah relasi antara ResepModel dan ObatModel dibuat?
+
+Relasi antara ResepModel dengan ObatModel dibuat melalui kode ini:
+@OneToMany(mappedBy = "resepModel", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<ObatModel> listObat;
+Sebagaimana dijelaskan pula pada soal, koneksi antara ResepModel dengan ObatModel adalah one-to-many. Jadi satu resep bisa memiliki banyak obat. Relasinya juga merupakan parsial, sehingga bisa jadi suatu resep tidak memiliki obat sama sekali.
+
+Sedangkan relasi antara ObatModel dengan ResepModel dibuat melalui kode ini:
+@ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "resep_id", referencedColumnName = "no_resep", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private ResepModel resepModel;
+Pada soal juga sudah dijelaskan gambaran relasi kedua objek ini. Koneksi antara ObatModel dengan ResepModel adalah many-to-one. Sehingga suatu obat hanya dapat terpetakan pada satu resep saja. Selain itu relasinya merupakan total, sehingga pasti suatu obat akan terhubung kepada sebuah resep.
+
+5. Jelaskan kegunaan FetchType.LAZY, CascadeType.ALL , dan FetchType.EAGER !
+
+FetchType.LAZY digunakan ketika kita ingin melakukan query dan hanya membutuhkan suatu data saja secara spesifik. KIta tidak perlu data relasinya. Bila kita menginginkan data yang lain, maka kita harus melakukan query ulang.
+FetchType.EAGER digunakan ketika kita ingin melakukan query terhadap suatu data dan sekaligus mendapatkan semua relasi atau informasi yang terkait dengan data tersebut. Sehingga sekali panggil maka semua data bisa didapatkan
+CascadeType.All digunakan ketika dalam suatu relasi entitas, kita menginginkan semua persistence seperti persist, refresh, merge dan remove yang terjadi di parent juga diturunkan kepada childnya.
+
+(Sumber: https://stackoverflow.com/questions/13027214/what-is-the-meaning-of-the-cascadetype-all-for-a-manytoone-jpa-association; https://qastack.id/programming/2990799/difference-between-fetchtype-lazy-and-eager-in-java-persistence-api; https://qastack.id/programming/13027214/what-is-the-meaning-of-the-cascadetype-all-for-a-manytoone-jpa-association)
