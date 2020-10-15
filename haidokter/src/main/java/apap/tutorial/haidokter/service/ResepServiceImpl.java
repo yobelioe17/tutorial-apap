@@ -32,7 +32,7 @@ public class ResepServiceImpl implements ResepService{
     }
 
     @Override
-    public List<ResepModel> getResepList() { return resepDb.findAll(Sort.by(Sort.Direction.DESC, "noResep")); }
+    public List<ResepModel> getResepList() { return resepDb.findAllByOrderByNoResepDesc(); }
 
     @Override
     public ResepModel getResepByNomorResep(Long noResep) { return resepDb.findByNoResep(noResep).get(); }

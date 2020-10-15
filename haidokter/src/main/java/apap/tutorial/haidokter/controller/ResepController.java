@@ -47,7 +47,7 @@ public class ResepController{
         return "add-resep";
     }
 
-    @GetMapping("/resep/change/{noResep}")
+    @GetMapping({"/resep/change/{noResep}", "/resep/change"})
     private String changeResepFormPage(
             @PathVariable Long noResep,
             Model model
@@ -103,7 +103,7 @@ public class ResepController{
         return "view-resep";
     }
 
-    @GetMapping("/resep/delete/{noResep}")
+    @GetMapping({"/resep/delete/{noResep}", "/resep/delete/no-resep"})
     public String deleteResep(
             @PathVariable Long noResep,
             Model model) {
