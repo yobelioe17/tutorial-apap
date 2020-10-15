@@ -7,7 +7,13 @@
 </head>
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container-fluid">
+    <!--
 <h2 th:text="'Obat dengan nama ' + ${nama}+ '  berhasil dihapus.'"></h2>
 <a href="/resep/viewall">Kembali</a>
+-->
+    <h3 th:text="${obatCount} + ' Obat telah berhasil dihapus'"></h3>
+<a th:href="@{/}">Kembali ke home</a>
+</div>
 </body>
 </html>
