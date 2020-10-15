@@ -59,7 +59,7 @@ public class ResepController{
         } catch (NoSuchElementException e){
             pesan = "Nomor Resep tidak ditemukan! Silakan teliti kembali";
             model.addAttribute("pesan", pesan);
-            return "error";
+            return "error-all";
         }
 
         ResepModel resep = resepService.getResepByNomorResep(noResep);
@@ -91,7 +91,7 @@ public class ResepController{
         } catch (NoSuchElementException e){
             pesan = "Nomor Resep tidak ditemukan! Silakan teliti kembali";
             model.addAttribute("pesan", pesan);
-            return "error";
+            return "error-all";
         }
 
         ResepModel resep = resepService.getResepByNomorResep(noResep);
@@ -115,7 +115,7 @@ public class ResepController{
         } catch (NoSuchElementException e){
             pesan = "Nomor Resep tidak ditemukan! Silakan teliti kembali";
             model.addAttribute("pesan", pesan);
-            return "error";
+            return "error-all";
         }
 
         ResepModel resep = resepService.getResepByNomorResep(noResep);
