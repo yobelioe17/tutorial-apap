@@ -23,11 +23,11 @@ public class ObatModel implements Serializable {
 
     @NotNull
     @Column(name = "bentuk", nullable = false)
-    private String bentuk;
+    private Integer bentuk;
 
     @NotNull
     @Column(name = "kuantitas", nullable = false)
-    private String kuantitas;
+    private Integer kuantitas;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "resep_id", referencedColumnName = "no_resep", nullable = false)
@@ -43,11 +43,11 @@ public class ObatModel implements Serializable {
         return nama;
     }
 
-    public String getBentuk() {
+    public Integer getBentuk() {
         return bentuk;
     }
 
-    public String getKuantitas() {
+    public Integer getKuantitas() {
         return kuantitas;
     }
 
@@ -63,11 +63,11 @@ public class ObatModel implements Serializable {
         this.nama = nama;
     }
 
-    public void setBentuk(String bentuk) {
+    public void setBentuk(Integer bentuk) {
         this.bentuk = bentuk;
     }
 
-    public void setKuantitas(String kuantitas) {
+    public void setKuantitas(Integer kuantitas) {
         this.kuantitas = kuantitas;
     }
 
