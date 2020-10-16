@@ -114,3 +114,23 @@ FetchType.EAGER digunakan ketika kita ingin melakukan query terhadap suatu data 
 CascadeType.All digunakan ketika dalam suatu relasi entitas, kita menginginkan semua persistence seperti persist, refresh, merge dan remove yang terjadi di parent juga diturunkan kepada childnya.
 
 (Sumber: https://stackoverflow.com/questions/13027214/what-is-the-meaning-of-the-cascadetype-all-for-a-manytoone-jpa-association; https://qastack.id/programming/2990799/difference-between-fetchtype-lazy-and-eager-in-java-persistence-api; https://qastack.id/programming/13027214/what-is-the-meaning-of-the-cascadetype-all-for-a-manytoone-jpa-association)
+
+## Tutorial 4
+1. Jelaskan perbedaan th:include dan th:replace!
+
+th:include berfungsi untuk menginisiasi proses insert suatu fragment sebagai body dari suatu tag, namun exclude fragment tag nya. Sedangkan th:replace berfungsi untuk mengganti suatu tag secara spesifik dengan fragmen, dan include fragment tag nya
+(sumber: https://anshulgnit.blogspot.com/2018/05/difference-between-thymeleaf-attribute-replace-insert-and-include.html; https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#flexible-layouts-beyond-mere-fragment-insertion)
+
+2. Jelaskan apa fungsi dari th:object!
+
+th:object berguna untuk menspesifikasikan suatu objek yang nantinya akan terkaitkan dengan hasil operasi yang ada. Dengan kata lain, th:object ini mampu merujuk suatu objek secara langsung. 
+(sumber: https://www.udig.com/spring-thymeleaf-basics-stack-overflow/; https://www.baeldung.com/thymeleaf-in-spring-mvc#:~:text=The%20th%3Aaction%20is%20used,matching%20property%20of%20the%20object.)
+
+3. Jelaskan perbedaan dari * dan $ pada saat penggunaan th:object! Kapan harus dipakai?
+
+Dalam penggunaan thymeleaf, notasi $ mengindikasikan pemanggilan variable expressions. Ini merupakan sebuah standard expression. Sedangkan notasi * mengindikasikan selection variable expression. Dalam konteks umum, penggunaan kedua notasi ini hampir mirip. Namun ketika dikombinasikan dengan th:object akan menunjukkan perbedaan. Sebagai contoh saya akan memilih object form. Ekspresi *{field} akan sama interpretasinya dengan ${form.field}
+(sumber: https://stackoverflow.com/questions/57511424/difference-between-and)
+
+4. Bagaimana kamu menyelesaikan latihan nomor 3?
+
+Dalam upaya mengerjakan soal latihan nomor 3, saya mencoba untuk menambahkan elemen baru pada navbar yang ada di fragment. Kemudian saya mencoba menambahkan sebuah penanda berupa ${} di dalamnya, serta memanggil penanda itu juga pada html yang ada. Setelah itu, saya mengimplementasikan fragment tersebut ke masing-masing html yang saya miliki, agar nantinya dapat muncul tulisan di pojok kanan atas navbar sesuai yang diinginkan.

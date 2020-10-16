@@ -6,7 +6,7 @@
         <object th:include="fragments/fragment :: js" th:remove="tag"></object>
     </head>
     <body>
-    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <nav th:replace="fragments/fragment :: navbar(pojok = 'View Resep')"></nav>
     <div class="container-fluid">
         <div class="card">
         <div class="card-header">Informasi Resep</div>
@@ -17,7 +17,7 @@
             <p th:text="'Catatan: ' + ${resep.catatan}"></p>
         <div>
             <a th:href="@{/resep/change/} + ${resep.noResep}" class="btn btn-success">Change Resep</a>
-            <a th:href="@{/resep/delete/no-resep} + ${resep.noResep}" class="btn btn-danger">Delete Resep</a>
+            <a th:href="@{/resep/delete/} + ${resep.noResep}" class="btn btn-danger">Delete Resep</a>
         </div>
         </div>
         </div>
@@ -77,14 +77,16 @@
                         <a th:href="@{/obat/change/} + ${obat.id}">Change Obat</a>
                     </td>
                     <td>
-                        <!--
+                        
                         <input type="checkbox" th:field="*{listObat}" th:value="${obat.id}">
                         <label th:for="${#ids.prev('listObat')}">Hapus</label>
-                        -->
+
+                        <!--
                         <input type="checkbox" value="6" id="listObat2"
                                name="listObat" checked="checked">
                         <input type="hidden" name="_listObat" value="on">
                         <label for="listObat2">Hapus</label>
+                        -->
                     </td>
                 </tr>
                 </tbody>

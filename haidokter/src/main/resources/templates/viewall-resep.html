@@ -6,7 +6,28 @@
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-<nav th:replace="fragments/fragment :: navbar"></nav>
+<nav th:replace="fragments/fragment :: navbar(pojok = 'View All Resep')"></nav>
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">Daftar Seluruh Resep</div>
+        <div class="card-body">
+            <div th:each="resep: ${resepList}">
+            <p th:text="'Nomor Resep: ' + ${resep.noResep}"></p>
+            <p th:text="'Nama Dokter: ' + ${resep.namaDokter}"></p>
+            <p th:text="'Nama Pasien: ' + ${resep.namaPasien}"></p>
+            <p th:text="'Catatan: ' + ${resep.catatan}"></p>
+                <a th:href="@{/resep/view/} + ${resep.noResep}" class="btn btn-outline-success">Lihat</a>
+                <a th:href="@{/resep/change/} + ${resep.noResep}" class="btn btn-success">Ubah</a>
+                <a th:href="@{/resep/delete/} + ${resep.noResep}" class="btn btn-danger">Hapus</a>
+                <br>
+                <br>
+            </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--
 <h2>Daftar Seluruh Resep</h2>
     <div th:each="resep: ${resepList}">
         <h3 th:text="'Nomor Resep: ' + ${resep.noResep}"></h3>
@@ -15,6 +36,7 @@
         <h3 th:text="'Catatan: ' + ${resep.catatan}"></h3>
         <hr>
     </div>
-<td><a th:href="@{/}">kembali</a></td>
+-->
+<a th:href="@{/}" class="btn btn-success">kembali</a>
 </body>
 </html>

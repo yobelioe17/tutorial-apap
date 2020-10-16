@@ -97,4 +97,28 @@ public class ObatController {
 
         return "update-obat";
     }
+
+    @PostMapping("obat/add-multiple/")
+    private String addMultipleObat(
+            @ModelAttribute ObatModel obat,
+            Model model
+    ){
+        obatService.addObat(obat);
+        model.addAttribute("nama", obat.getNama());
+
+        return "form-add-multiple-obat";
+    }
+
+    @GetMapping("/obat/add-multiple/{noResep}")
+    private String addMultipleObatFormPage(
+            @PathVariable Long noResep,
+            Model model
+    ){
+        ObatModel obat = new ObatModel();
+        ResepModel resep = resepService.getResepByNomorResep(noResep);
+        obat.setResepModel(resep);
+        model.addAttribute("obat", obat);
+
+        return "form-add-multiple-obat";
+    }
 }

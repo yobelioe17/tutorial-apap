@@ -79,8 +79,32 @@ public class ResepController{
         return "update-resep";
     }
 
-    @GetMapping("/resep/view")
+    @GetMapping("/resep/view/{noResep}")
     public String viewDetailResep(
+            @PathVariable Long noResep,
+            Model model
+    ){
+        String pesan;
+
+        try{
+            resepService.getResepByNomorResep(noResep);
+        } catch (NoSuchElementException e){
+            pesan = "Nomor Resep tidak ditemukan! Silakan teliti kembali";
+            model.addAttribute("pesan", pesan);
+            return "error-all";
+        }
+
+        ResepModel resep = resepService.getResepByNomorResep(noResep);
+        List<ObatModel> listObat = resep.getListObat();
+
+        model.addAttribute("resep", resep);
+        model.addAttribute("listObat", listObat);
+
+        return "view-resep";
+    }
+
+    @GetMapping("/resep/view")
+    public String viewDetailResepHome(
             @RequestParam(value = "noResep") Long noResep,
             Model model
     ){

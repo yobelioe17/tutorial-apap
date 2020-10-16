@@ -6,7 +6,7 @@
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-<nav th:replace="fragments/fragment :: navbar"></nav>
+<nav th:replace="fragments/fragment :: navbar(pojok = 'Ubah Resep')"></nav>
 <h2>Resep Berhasil Diubah!</h2>
 <p th:text="${attribut} + ' berhasil diubah dari ' + ${old} + ' menjadi ' + ${changeWord}"></p>
 <h3 th:text="'Nomor Resep: ' + ${resep.noResep}"></h3>
