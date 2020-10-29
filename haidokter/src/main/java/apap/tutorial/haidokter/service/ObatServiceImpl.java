@@ -25,6 +25,11 @@ public class ObatServiceImpl implements ObatService{
     }
 
     @Override
+    public void deleteObatById(Long id){
+        obatDb.deleteById(id);
+    }
+
+    @Override
     public ObatModel getObatById(Long id) { return obatDb.findById(id).get(); }
 
     @Override

@@ -48,6 +48,7 @@ public class ObatController {
         return "add-obat";
     }
 
+    /*
     @GetMapping("/obat/delete/{id}")
     public String deleteResep(
             @PathVariable Long id,
@@ -56,6 +57,20 @@ public class ObatController {
         ObatModel obat = obatService.getObatById(id);
         obatService.deleteObat(obat);
         model.addAttribute("nama", obat.getNama());
+
+        // Return view template yang ingin digunakan
+        return "delete-obat";
+    }
+     */
+
+    @PostMapping("/obat/delete")
+    public String deleteMenuFormSubmit(
+            @ModelAttribute ResepModel resep,
+            Model model) {
+        model.addAttribute("obatCount", resep.getListObat().size());
+        for(ObatModel obat: resep.getListObat()){
+            obatService.deleteObatById(obat.getId());
+        }
 
         // Return view template yang ingin digunakan
         return "delete-obat";
@@ -81,5 +96,29 @@ public class ObatController {
         model.addAttribute("updatedObat", updatedObat.getId());
 
         return "update-obat";
+    }
+
+    @PostMapping("obat/add-multiple/")
+    private String addMultipleObat(
+            @ModelAttribute ObatModel obat,
+            Model model
+    ){
+        obatService.addObat(obat);
+        model.addAttribute("nama", obat.getNama());
+
+        return "form-add-multiple-obat";
+    }
+
+    @GetMapping("/obat/add-multiple/{noResep}")
+    private String addMultipleObatFormPage(
+            @PathVariable Long noResep,
+            Model model
+    ){
+        ObatModel obat = new ObatModel();
+        ResepModel resep = resepService.getResepByNomorResep(noResep);
+        obat.setResepModel(resep);
+        model.addAttribute("obat", obat);
+
+        return "form-add-multiple-obat";
     }
 }

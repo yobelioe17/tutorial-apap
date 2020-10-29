@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
-    <title>Update Obat</title>
+    <title>Tambah Banyak Obat</title>
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-<nav th:replace="fragments/fragment :: navbar(pojok = 'Ubah Obat')"></nav>
-<h2>Obat berhasil diubah</h2>
-<p th:text="'Obat dengan nomor id ' + ${updatedObat} + ' berhasil diubah'"></p>
+<nav th:replace="fragments/fragment :: navbar(pojok = 'Tambah Multiple Obat')"></nav>
+<div class="container-fluid">
+    <h2>Tambah Banyak Obat</h2>
+</div>
 <a href="/resep/viewall">Kembali</a>
 </body>
 </html>

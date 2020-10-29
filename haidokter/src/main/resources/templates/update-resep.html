@@ -2,8 +2,11 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <title>Update Resep</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
+<nav th:replace="fragments/fragment :: navbar(pojok = 'Ubah Resep')"></nav>
 <h2>Resep berhasil diubah</h2>
 <p th:text="'Resep dengan nomor resep ' + ${resep} + ' berhasil diubah'"></p>
 <a href="/resep/viewall">Kembali</a>

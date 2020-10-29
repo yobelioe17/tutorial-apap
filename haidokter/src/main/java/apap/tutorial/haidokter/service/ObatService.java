@@ -9,6 +9,8 @@ public interface ObatService {
 
     void deleteObat(ObatModel obat);
 
+    void deleteObatById(Long id);
+
     ObatModel getObatById(Long id);
 
     // Method untuk update obat
