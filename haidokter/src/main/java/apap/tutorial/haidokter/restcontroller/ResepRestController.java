@@ -59,6 +59,6 @@ public class ResepRestController{
         }
     }
 
-    @GetMapping(value = "/resep")
+    @GetMapping(value = "/reseps")
     private List<ResepModel> retrieveListResep() { return resepRestService.retrieveListResep();}
 }
