@@ -1,5 +1,6 @@
 package  apap.tutorial.haidokter.restcontroller;
 
+import apap.tutorial.haidokter.model.ObatModel;
 import apap.tutorial.haidokter.model.ResepModel;
 import apap.tutorial.haidokter.rest.ResepDetail;
 import apap.tutorial.haidokter.service.ResepRestService;
@@ -49,7 +50,7 @@ public class ResepRestController{
         }
     }
 
-    @PostMapping(value = "/resep/{noResep}")
+    @PutMapping(value = "/resep/{noResep}")
     private ResepModel updateResep(@PathVariable(value = "noResep") Long noResep, @RequestBody ResepModel resep){
         try{
             return resepRestService.changeResep(noResep, resep);
@@ -72,4 +73,16 @@ public class ResepRestController{
     private Mono<ResepDetail> postStatus(){
         return resepRestService.postStatus();
     }
+
+    @GetMapping(value = "/resep/{noResep}")
+    private ResepModel getResepByNoResep(@PathVariable(value = "noResep") Long noResep){
+        try{
+            return resepRestService.getResepByNoResep(noResep);
+        } catch (NoSuchElementException e){
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Resep with Number " + String.valueOf(noResep) + " not found!"
+            );
+        }
+    }
+
 }

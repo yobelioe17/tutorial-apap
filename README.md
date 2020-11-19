@@ -134,3 +134,21 @@ Dalam penggunaan thymeleaf, notasi $ mengindikasikan pemanggilan variable expres
 4. Bagaimana kamu menyelesaikan latihan nomor 3?
 
 Dalam upaya mengerjakan soal latihan nomor 3, saya mencoba untuk menambahkan elemen baru pada navbar yang ada di fragment. Kemudian saya mencoba menambahkan sebuah penanda berupa ${} di dalamnya, serta memanggil penanda itu juga pada html yang ada. Setelah itu, saya mengimplementasikan fragment tersebut ke masing-masing html yang saya miliki, agar nantinya dapat muncul tulisan di pojok kanan atas navbar sesuai yang diinginkan.
+
+## Tutorial 5
+1. Apa itu Postman? Apa kegunaannya?
+Postman merupakan sebuah aplikasi yang biasanya digunakan untuk para programmer yang hendak bermain-main dengan API. Aplikasi ini sangat membantu untuk menguji API yang telah dibuat. Postman berfungsi sebagai GUI API Caller. Bahkan tak hanya itu, Postman juga menyadiakan fitur lain yaitu Sharing Collection API for Documentation, Testing API, Realtime Collaboration Team, Monitoring API, dan masih banyak lagi
+(sumber: https://antares.id/id/postman.html#:~:text=Postman%20adalah%20sebuah%20aplikasi%20yang,API%20yang%20telah%20mereka%20buat; https://medium.com/skyshidigital/documentation-testing-api-dengan-postman-part-1-5d33e430dca7)
+
+2. Jelaskan fungsi dari anotasi @JsonIgnoreProperties dan @JsonProperty.
+@JsonIgnore digunakan untuk mengabaikan setiap logical properti yang mungkin digunakan pada saat serialization dan deserialization. @JsonIgnore bisa berisikan parameter berupa boolean untuk mengaktifkan maupun mematikannya.
+Sedangkan @JsonIgnoreProperties digunakan untuk mengabaikan logical properti secara spesifik (tidak semuanya) pada saat JSON serialization dan deserialization.
+(sumber: https://www.concretepage.com/jackson-api/jackson-jsonignore-jsonignoreproperties-and-jsonignoretype)
+
+3. Apa kegunaan atribut WebClient?
+WebClient berfungsi untuk menyederhanakan tugas-tugas umum seperti Create, Read, Update, dan Delete. Dalam tutorial yang sudah dilakukkan, webclient akan menjadikan alamat dari Mock Server yang sudah terbentuk pada Postman sebagai baseUrl nya. Sehingga nantinya alamat yang akan diakses akan memiliki alamat dasar dari baseUrl yang sudah di definisikan pada class Setting
+(Sumber: https://wirasetiawan29.wordpress.com/2015/04/16/webclient-vs-httpclient/; https://qastack.id/programming/4988286/what-difference-is-there-between-webclient-and-httpwebrequest-classes-in-net)
+
+4. Apa itu ResponseEntity dan BindingResult? Apa kegunaannya?
+ResponseEntity adalah ekstensi dari HttpEntity. ResponseEntity digunakan untuk menambahkan sebuah HttpStatus pada kode status. Sedangkan BindingResult merupakan sebuah interface umum yang merepresentasikan hasil dari binding. BindingResult bisa digunakan sebagai Validator dan menambahkan binding-spesific analysis serta model building.
+(sumber: https://docs.spring.io/spring-framework/docs/current/javadoc-api/index.html?org/springframework/validation/BindingResult.html; https://docs.spring.io/spring-framework/docs/current/javadoc-api/index.html?org/springframework/http/ResponseEntity.html)
