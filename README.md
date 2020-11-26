@@ -152,3 +152,22 @@ WebClient berfungsi untuk menyederhanakan tugas-tugas umum seperti Create, Read,
 4. Apa itu ResponseEntity dan BindingResult? Apa kegunaannya?
 ResponseEntity adalah ekstensi dari HttpEntity. ResponseEntity digunakan untuk menambahkan sebuah HttpStatus pada kode status. Sedangkan BindingResult merupakan sebuah interface umum yang merepresentasikan hasil dari binding. BindingResult bisa digunakan sebagai Validator dan menambahkan binding-spesific analysis serta model building.
 (sumber: https://docs.spring.io/spring-framework/docs/current/javadoc-api/index.html?org/springframework/validation/BindingResult.html; https://docs.spring.io/spring-framework/docs/current/javadoc-api/index.html?org/springframework/http/ResponseEntity.html)
+
+## Tutorial 6
+1. Jelaskan secara singkat perbedaan Otentikasi dan Otorisasi ! Di bagian mana (dalam kode yang telah anda buat) konsep tersebut diimplementasi?
+Authentication merupakan sebuah proses dimana sistem memastikan kalau pengguna yang berusaha masuk merupakan user yang sesuai.
+Contoh implementasinya pada saat login. Dilakukan authentication untuk memastikan apakah username dan passwordnya sesuai atau tidak.
+Authorization merupakan suatu hak yang mengatur batasan-batasan user dalam mengakses suatu fitur.
+Contoh implementasinya pada saat mengerjakan latihan 1(diatur pada WebSecurityConfig), yang mengatur bahwa hak untuk menambahkan user hanya bisa dilakukan oleh ADMIN 
+(sumber: https://www.coursehero.com/file/p3r7hfb7/2-Apa-perbedaan-antara-Autorisasi-dan-Autentikasi-Jelaskan-menggunakan-contoh-a/; globhy.com/read-blog/33_perbedaan-antara-otentikasi-authentication-dan-otorisasi-authorization.html)
+
+2. Apa itu BCryptPasswordEncoder ? Jelaskan secara singkat cara kerjanya!
+BCryptPasswordEncoder merupakan sebuah tool pada Spring yang berfungsi untuk membantu melakukan enkripsi pada password. Tools ini dapat membantu dalam pembuatan user yang memiliki password, agar password lebih aman. Cara kerjanya cukup sederhana, yakni dengan membuat objek baru dengan class BCryptPasswordEncoder. Kemudian lakukan encrypt pada password yang diinginkan dengan menjalankan method encrypt yang sudah build in pada class ini
+(sumber: https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/crypto/bcrypt/BCryptPasswordEncoder.html)
+
+3. Jelaskan secara singkat apa itu UUID beserta penggunaannya!
+UUID(Universally Unique Identifier) memungkinkan sistem untuk secara unik mengidentifikasi informasi tanpa koordinasi pusat signifikan. Pada dasarnya, UUID ini terdiri dari karakter yang dibuat secara acak sehingga dapat dipastikan unik untuk setiap data yang akan disajikan. Informasi diberi label dengan UUIDs karena itu dapat kemudian digabungkan menjadi satu database tanpa perlu menyelesaikan identifier (ID) konflik. Salah satu penggunaan luas dari standar ini adalah dalam pengidentifikasi Microsoft secara global unik (GUID). Kegunaan penting lainnya termasuk ext2/ext3 UUIDs filesystem, LUKS partisi terenkripsi, GNOME, KDE, dan Mac OS X, yang semuanya menggunakan implementasi yang berasal dari perpustakaan uuid ditemukan dalam paket e2fsprogs.
+(sumber: https://desyarisandinasution.wordpress.com/2012/07/13/all-about-universal-unique-identifier-uuid/)
+
+4. Apa kegunaan class UserDetailsServiceImpl.java ? Mengapa harus ada class tersebut padahal kita sudah memiliki class UserRoleServiceImpl.java ?
+UserDetailsServiceImpl.java diperlukan agar dapat melakukan authentication pada user. Proses authentication ini dapat terakomodasikan akibat implemets class UserDetailsService yang berasal dari paket Security yang ada di Spring boot. Melalui class ini, program dapat menyesuaikan role dan apa saja yang bisa dilakukan dengan role tersebut sesuai dengan data yang ada pada database. Hal ini tidak dapat dilakukan oleh UserRoleServiceImpl.java sebab class ini hanya digunakan untuk proses mapping terhadap alamat yang akan diakses.
