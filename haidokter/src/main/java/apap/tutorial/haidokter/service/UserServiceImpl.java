@@ -1,5 +1,6 @@
 package apap.tutorial.haidokter.service;
 
+import apap.tutorial.haidokter.model.ObatModel;
 import apap.tutorial.haidokter.model.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -25,4 +26,17 @@ public class UserServiceImpl implements UserService{
         String hashedPassword = passwordEncoder.encode(password);
         return hashedPassword;
     }
+
+    @Override
+    public UserModel getUserByUsername(String username){
+        return userDB.findByUsername(username);
+    }
+
+
+    public void updatePassword(UserModel user, String password) {
+        String encryptedPass = encrypt(password);
+        user.setPassword(encryptedPass);
+        userDB.save(user);
+    }
+
 }

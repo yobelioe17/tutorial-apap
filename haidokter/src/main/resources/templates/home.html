@@ -69,7 +69,9 @@
                         <label>User Name</label>
                         <input type="text" name="username" class="form-control"/>
                         <label>Password</label>
-                        <input type="password" name="password" class="form-control">
+                        <input type="password" name="password" class="form-control"
+                               pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                               title="password harus mengandung angka dan huruf serta minimal memiliki 8 karakter" required>
                         <label>Role</label>
                         <select name="role" class="form-control">
                             <option selected value="">-- Pilih Role --</option>
