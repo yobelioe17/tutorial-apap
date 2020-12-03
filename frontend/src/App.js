@@ -34,9 +34,8 @@ export default class App extends React.Component {
     this.setState({favItems: newItems});
   }
 
-  handleRemoveAll = (item) =>{
+  handleRemoveAll = () =>{
     const newItems = [ ...this.state.favItems];
-    
 
     newItems.splice(0, newItems.length);
     this.setState({favItems: newItems});

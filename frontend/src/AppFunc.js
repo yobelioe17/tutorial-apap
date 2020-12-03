@@ -2,6 +2,7 @@ import React, {useState} from "react";
 
 import List from "./components/List";
 import listMovies from "movies.json";
+import EmptyState from "./components/EmptyState";
 import "./App.css";
 
 /** 
@@ -21,6 +22,8 @@ function App(){
 
     const [favItems, setFavItems] = useState(()=>[]);
 
+    
+
     function handleItemClick(item) {
         // immutability
         const newItems = [ ...favItems];
@@ -30,16 +33,50 @@ function App(){
         const targetInd = newItems.findIndex((it) => it.id === newItem.id);
 
         if(targetInd < 0) newItems.push(newItem);
-        else newItems.splice(targetInd, 1); // delete 1 item at index targetInd
-
+        
         setFavItems(newItems);
     }
+
+    function handleRemoveFavList(item) {
+        const newItems = [ ...favItems];
+        const newItem = { ...item};
+    
+        const targetInd = newItems.findIndex((it) => it.id === newItem.id);
+    
+        if(targetInd < 0) newItems.push(newItem);
+        else newItems.splice(targetInd, 1);
+    
+        setFavItems(newItems);
+      }
+    
+      function handleRemoveAll (){
+        const newItems = [ ...favItems];
+        
+        newItems.splice(0, newItems.length);
+        setFavItems(newItems);
+      }
+    
+    /**
+      function showToggle() {
+        const {show} = favItems;
+        setFavItems(!show);
+      };
+    */
 
     return(
         <div className="container-fluid">
             <h1 className="text-center mt-3 mb-0">Favorites Movie App</h1>
             <p className="text-center text-secondary text-sm font-italic">
                 (This is a <strong>function-based</strong> application)
+                <br />
+                <br />
+                <label className="switch">
+                    <input type="checkbox" />
+                    <span className="slider round"></span>
+                    <br />
+                    <br />
+                    <p className="text-center text-secondary text-sm">Show Favorites</p>
+                </ label>
             </p>
             <div className="container pt-3">
                 <div className="row">
@@ -50,13 +87,20 @@ function App(){
                             onItemClick={handleItemClick}
                         />
                     </div>
+                    
                     <div className="col-sm">
-                    <List
+                        {!favItems.length ? <EmptyState/> :
+                        <List
                         title="My Favorites"
                         items={favItems}
-                        onItemClick={handleItemClick}
-                    />
+                        onItemClick={handleRemoveFavList}
+                        />}
+                        {!favItems.length ? null :
+                        <button
+                        onClick={handleRemoveAll} className="btn btn-danger"
+                        > Hapus Semua </button>}
                     </div>
+                    
                 </div>
             </div>
         </div>
