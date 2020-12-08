@@ -171,3 +171,51 @@ UUID(Universally Unique Identifier) memungkinkan sistem untuk secara unik mengid
 
 4. Apa kegunaan class UserDetailsServiceImpl.java ? Mengapa harus ada class tersebut padahal kita sudah memiliki class UserRoleServiceImpl.java ?
 UserDetailsServiceImpl.java diperlukan agar dapat melakukan authentication pada user. Proses authentication ini dapat terakomodasikan akibat implemets class UserDetailsService yang berasal dari paket Security yang ada di Spring boot. Melalui class ini, program dapat menyesuaikan role dan apa saja yang bisa dilakukan dengan role tersebut sesuai dengan data yang ada pada database. Hal ini tidak dapat dilakukan oleh UserRoleServiceImpl.java sebab class ini hanya digunakan untuk proses mapping terhadap alamat yang akan diakses.
+
+## Tutorial 7
+1. Jelaskan apa yang Anda lakukan di latihan dalam satu paragraf per-soal. Berikan screenshot sebagai ilustrasi dari apa yang Anda jelaskan.
+- Pada latihan 1, saya membuat sebuah kondisional (if-else) pada index.js yang ada di component Item. If else ini saya letakkan pada tag input yang mengatur checkbox. Disini saya mendefinisikan kalau kondisi checkboxnya ter checked, berarti dia sudah dipilih dan harus ditampilkan di favItems. Maka dari itu, imput checkboxnya muncul. Nah kalau kondisi checkboxnya tidak ter checked, berarti itu ada di listMovies yang belum dipilih. Sehingga tag tersebut tidak perlu muncul.
+
+![alt text](https://github.com/yobelioe17/tutorial-apap/blob/feat/tutorial-7-frontend/asset/apap1.png?raw=true)
+
+- Pada latihan 2, saya mencoba untuk membuat kondisi (if-else) pada App.js. Pertama-tama saya pastikan bahwa panjang favList itu tidak kosong, sehingga buttonnya bisa muncul. Kalau panjangnya kosong, berarti buton tidak akan muncul. Kemudian setelah buttonnya muncul, saat di klik akan merujuk pada function yang sudah saya definisikan bernama handleRemoveAll, yang berperan untuk mengahpus seluruh elemen di list favItems. Idenya adalah dengan melakukan splice dari elemen ke 0 hingga sebanyak panjang elemen pada favItems. Sehingga seluruh elemen di favItems akan displice.
+
+![alt text](https://github.com/yobelioe17/tutorial-apap/blob/feat/tutorial-7-frontend/asset/apap2.png?raw=true)
+
+-Pada latihan 3, saya memodifikasi sedikit perintah pada function handleItemClick. Saya membuat sebuah function baru yang bernama handleRemoveFavList, yang isinya mirip dengan handleItemClick sebelumnya. Sedangkan pada function handleItemClick, saya menghapus baris "else newItems.splice(targetInd, 1);". Dengan terhapusnya baris tersebut, maka ketika item yang diklik mentriger function handleItemClick, dia hanya akan melakukan penambahan tanpa melakukan splice. Function handleItemClick saya implementasikan di listMovies, sedangkan function handleRemoveFavList saya implementasikan pada list favItems. Oleh sebab itu, pada favItems kalau diklik lagi, maka dia akan terhapus (ter-splice)
+
+![alt text](https://github.com/yobelioe17/tutorial-apap/blob/feat/tutorial-7-frontend/asset/apap3.png?raw=true)
+
+- Pada latihan 4, saya melihat referensi pada w3school untuk membuat button toogle dengan animasinya. Sumber ada di https://www.w3schools.com/howto/howto_css_switch.asp . Kemudian, saya meletakkan script css nya pada App.css. Untuk implementasinya, saya letakkan di bawah tulisan this is a class-based application agar posisinya pas di tengah. Ketika tombol itu ditekan, akan mentrigger pemanggilan function bernama showToggle. Function ini akan berfungsi sebagai setter untuk mengatur nilai dari variabel show pada state, bernilai sebaliknya. Kalau nilainya true, maka akan memunculkan section yang sebelah kanan. Tapi kalau nilainya false, dia akan mereturn null sehingga yang ada hanya halaman yang berisi listMovies saja.
+
+![alt text](https://github.com/yobelioe17/tutorial-apap/blob/feat/tutorial-7-frontend/asset/apap4.png?raw=true)
+
+- Pada latihan 5, saya membuat sebuah component baru bernama EmptyState dengan isi yang bisa dilihat pada folder tersebut. Intinya pada component tersebut berisi index.js yang akan memunculkan kalimat "Belum ada item yang dipilih" dan "Klik salah satu item di List Movies". Setelah itu beralih ke App.js. Pada App.js, saya melakukan kondisional (if-else) di tag List. Jadi ketika ternyata panjang dari listItems itu 0, berarti tidak ada isinya. Sehingga akan mereturn nilai dari tag EmptyState. Akan tetapi bila panjangnya tidak 0, maka akan memunculkan tampilan dari List yang berisi item dari film yang ada di listItems. Selain itu juga akan menampilkan button "hapus semua" yang ada pada latihan 2. Dengan demikian maka fungsinya dapat berjalan dengan baik
+
+![alt text](https://github.com/yobelioe17/tutorial-apap/blob/feat/tutorial-7-frontend/asset/apap5.png?raw=true)
+
+2. Menurut pemahaman kamu selama pengerjaan tutorial ini, apa perbedaan antara state dan props ?
+Menurut saya state merupakan suatu variabel yang sebelumnya akan didefinisikan terlebih dahulu pada sebuah class. Props merupakan variabel yang berasal dari luar kelas, atau bisa juga dia berasal dari class Parent yang ada.
+(sumber: https://www.dumetschool.com/blog/Mengenal-State-Dan-Props-Pada-React#:~:text=State%20adalah%20sebuah%20properti%20atau,luar%20class%20atau%20class%20parent.)
+
+3. Apa keuntungan menggunakan component (e.g. List, Item) di React? Berikan contohnya!
+Keuntungan menggunakan component:
+- Lebih ringkas. Contoh : pada App.js kita tidak perlu menuliskan baris kode yang panjang. Cukup melakukan import dan memanggil componentnya saja maka baris kode itu akan secara otomatis masuk ke App.js
+- Mudah mendeteksi error. Contoh : bila saat melakukan run ada error, akan bisa terdeteksi darimana sumber error tersebut. Kalau sumbernya dari component, maka dapat dengan cepat diatasi. Seandainya semua kode ada di App.js, maka error detection dan debuggingnya menjadi lebih ribet dan melibatkan banyak elemen.
+- Merupakan best practice. Contoh : Agar tercipta kondisi clean code, menggunakan component adalah solusi yang baik serta efektif.
+- Dapat menggabungkan antar component. Contoh : Ketika ada lebih dari 1 komponen yang ingin dimasukkan secara bertumpuk, bisa dilakukan dengan memasukkan tag dalam tag dalam tag dan seterusnya. Bila semua code dimasukkan kedalam App.js saja, malah membuat code terlihat sulit dibaca.
+
+4. Menurut kamu, apa saja kelebihan menggunakan React dalam pengembangan web?
+Menurut saya keuntungannya:
+- Menjadi lebih profesional
+- Tampilan website lebih baik
+- Pengorganisasian website lebih terstruktur
+- Apabila ada error bisa dilacak di bagian mana
+- Memiliki berbagai fitur mempermudah pengaturan elemen dan komponen website
+
+5. Menurut kamu, apa saja kekurangan menggunakan React dalam pengembangan web?
+Menurut saya kekurangannya:
+- Lebih sulit
+- Membutuhkan pemahaman lebih terkait javascript extension
+- Tidak ramah bagi orang yang belum terbiasa coding
+- Kemungkinan error pada teknis saat membuat environtment react
