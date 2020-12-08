@@ -5,11 +5,20 @@ import listMovies from "movies.json";
 import EmptyState from "./components/EmptyState";
 import './App.css';
 
+const black = '#000000';
+const white = '#ffffff';
+
 export default class App extends React.Component {
-  state={
-    favItems: [],
-    show : true
+
+  constructor(props){
+    super(props);
+    this.state = {favItems: [],
+      show : true,
+      colorBack : white
+    };
+    this.darkMode = this.darkMode.bind(this);
   };
+    
 
   handleItemClick = (item) =>{
     const newItems = [ ...this.state.favItems];
@@ -41,6 +50,19 @@ export default class App extends React.Component {
     this.setState({favItems: newItems});
   }
 
+  darkMode = () =>{
+    if(this.state.color === black){
+      this.setState({
+        color: white
+      });
+    } else {
+      this.setState({
+        color: black
+      });
+    }  
+  };
+  
+
 
   showToggle = () => {
     const {show} = this.state;
@@ -50,7 +72,7 @@ export default class App extends React.Component {
   render(){
     const {favItems} = this.state;
   return (
-    <div className="container-fluid">
+    <div className="container-fluid" style={{background: this.state.color}}>
       <h1 className="text-center mt-3 mb-0">Favorites Movie App</h1>
       <p className="text-center text-secondary text-sm font-italic">
         (This is a <strong>class-based</strong> application)
@@ -89,6 +111,15 @@ export default class App extends React.Component {
           </div>
           : null}
         </div>
+        <br />
+        <br />
+        <label className="switch">
+        <input type="checkbox" onClick={this.darkMode} />
+        <span className="slider round"></span>
+        <br />
+        <br />
+        <p className="text-center text-secondary text-sm">Dark Mode</p>
+      </ label>
       </div>
     </div>
   );
