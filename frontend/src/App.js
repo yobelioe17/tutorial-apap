@@ -14,7 +14,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {favItems: [],
       show : true,
-      colorBack : white
+      color : white
     };
     this.darkMode = this.darkMode.bind(this);
   };
