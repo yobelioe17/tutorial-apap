@@ -4,6 +4,7 @@ import classes from "./styles.module.css";
 import APIConfig from "../../api/APIConfig";
 import Button from "../../components/Button";
 import Modal from "../../components/Modal";
+import Search from "../../components/Search";
 
 class ResepList extends Component{
     constructor(props) {
@@ -16,6 +17,8 @@ class ResepList extends Component{
         namaDokter: "",
         namaPasien: "",
         catatan: "",
+        search: [],
+        searchWord: "",
         };
         this.handleClickLoading = this.handleClickLoading.bind(this);
         this.handleAddResep = this.handleAddResep.bind(this);
@@ -23,7 +26,9 @@ class ResepList extends Component{
         this.handleChangeField = this.handleChangeField.bind(this);  
         this.handleEditResep = this.handleEditResep.bind(this);
         this.handleSubmitAddResep = this.handleSubmitAddResep.bind(this);  
-        this.handleSubmitEditResep = this.handleSubmitEditResep.bind(this);  
+        this.handleSubmitEditResep = this.handleSubmitEditResep.bind(this);
+        this.handleChangeQuery = this.handleChangeQuery.bind(this);
+         
     }
 
     componentDidMount(){
@@ -120,26 +125,53 @@ class ResepList extends Component{
         });
     }
 
+    handleChangeQuery(event){
+        const { name, value } = event.target;
+        this.setState({ [name]: value });
+        const word = value;
+        const newList = [];
+        for (var i = 0; i < this.state.reseps.length; i++){
+            if (this.state.reseps[i].namaDokter.toLowerCase().includes(word.toLowerCase()) ){
+                newList.push(this.state.reseps[i]);
+            }
+        }
+        this.setState({search: newList});
+    }
+
     render(){
         
         return(
             <div className={classes.resepList}>
                 <h1 className={classes.title}>All Reseps</h1>
+                <Search onChange={this.handleChangeQuery} value={this.state.searchWord} />
                 <Button onClick={this.handleAddResep} variant="primary">
                     Add Resep
                 </Button>
                 <div>
-                    {this.state.reseps.map((resep)=>(
-                        <Resep
-                        key = {resep.noResep}
-                        noResep={resep.noResep}
-                        namaDokter={resep.namaDokter}
-                        namaPasien={resep.namaPasien}
-                        catatan={resep.catatan}
-                        handleEdit={()=> this.handleEditResep(resep)}
-                        handleDelete={()=> this.handleDeleteResep(resep.noResep)}
-                        />
-                    ))}
+                    {this.state.searchWord === "" ?
+                        this.state.reseps.map((resep)=>(
+                            <Resep
+                            key = {resep.noResep}
+                            noResep={resep.noResep}
+                            namaDokter={resep.namaDokter}
+                            namaPasien={resep.namaPasien}
+                            catatan={resep.catatan}
+                            handleEdit={()=> this.handleEditResep(resep)}
+                            handleDelete={()=> this.handleDeleteResep(resep.noResep)}
+                            />
+                        )) :
+                        this.state.search.map((search)=>(
+                            <Resep
+                            key = {search.noResep}
+                            noResep={search.noResep}
+                            namaDokter={search.namaDokter}
+                            namaPasien={search.namaPasien}
+                            catatan={search.catatan}
+                            handleEdit={()=> this.handleEditResep(search)}
+                            handleDelete={()=> this.handleDeleteResep(search.noResep)}
+                            />
+                            ))
+                        }
                 </div>
                 <Modal show={this.state.isCreate || this.state.isEdit} handleCloseModal={this.handleCancel}>
                     <form>
