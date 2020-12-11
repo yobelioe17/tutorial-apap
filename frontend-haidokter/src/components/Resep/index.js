@@ -1,6 +1,7 @@
 import React from "react";
 import classes from "./styles.module.css";
 import Button from "../Button";
+import ObatList from "../../containers/ObatList";
 
 const Resep = (props) => {
     const {noResep, namaDokter, namaPasien, catatan, listObat, handleEdit, handleDelete} = props;
@@ -10,8 +11,8 @@ const Resep = (props) => {
             <p>{`Nama Dokter: ${namaDokter}`}</p>
             <p>{`Nama Pasien: ${namaPasien}`}</p>
             <p>{`Nama Catatan: ${catatan}`}</p>
-            <p>{`List Obat: `}</p>
-            
+            <p>List Obat:</p>
+            <ObatList listObat={listObat}/>
             <Button onClick={handleEdit} variant="success">
                 Edit
             </Button>

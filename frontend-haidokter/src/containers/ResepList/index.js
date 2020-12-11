@@ -28,6 +28,7 @@ class ResepList extends Component{
         this.handleSubmitAddResep = this.handleSubmitAddResep.bind(this);  
         this.handleSubmitEditResep = this.handleSubmitEditResep.bind(this);
         this.handleChangeQuery = this.handleChangeQuery.bind(this);
+        this.handleDeleteResep = this.handleDeleteResep.bind(this);
          
     }
 
@@ -139,7 +140,7 @@ class ResepList extends Component{
     }
 
     render(){
-        
+
         return(
             <div className={classes.resepList}>
                 <h1 className={classes.title}>All Reseps</h1>
@@ -156,8 +157,10 @@ class ResepList extends Component{
                             namaDokter={resep.namaDokter}
                             namaPasien={resep.namaPasien}
                             catatan={resep.catatan}
+                            listObat = {resep.listObat}
                             handleEdit={()=> this.handleEditResep(resep)}
                             handleDelete={()=> this.handleDeleteResep(resep.noResep)}
+                            
                             />
                         )) :
                         this.state.search.map((search)=>(
@@ -167,6 +170,7 @@ class ResepList extends Component{
                             namaDokter={search.namaDokter}
                             namaPasien={search.namaPasien}
                             catatan={search.catatan}
+                            listObat={search.listObat}
                             handleEdit={()=> this.handleEditResep(search)}
                             handleDelete={()=> this.handleDeleteResep(search.noResep)}
                             />
@@ -210,6 +214,7 @@ class ResepList extends Component{
                         </Button>
                     </form>
                 </Modal>
+
             </div>
         );
     }
