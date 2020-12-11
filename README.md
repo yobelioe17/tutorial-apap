@@ -230,7 +230,7 @@ Berdasarkan apa yang saya amati, async merupakan definisi dari method yang bisa 
 
 3. Masukkan jawaban dari Screenshot yang diperintahkan di halaman 8 pada Component Lifecycle pada pertanyaan ini.
 
-![alt text](https://github.com/yobelioe17/tutorial-apap/blob/feat/tutorial-8-frontend/assets/nomor3.jpg?raw=true)
+![alt text](https://github.com/yobelioe17/tutorial-apap/blob/feat/tutorial-8-frontend/frontend-haidokter/src/assets/nomor3.jpg?raw=true)
 
 4. Jelaskan fungsi dari componentDidMount, shouldComponentUpdate, componentDidUpdate, componentWillReceiveProps, componentWillUnmount.
 componenDidMount berfungsi untuk menghandle tindakan apa saja yang dilakukan ketika output sudah mulai dirender
