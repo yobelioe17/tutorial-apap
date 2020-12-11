@@ -61,6 +61,11 @@ class ResepList extends Component{
             console.log(error);
         }
         this.handleCancel(event);
+        this.setState({
+            namaDokter: "",
+            namaPasien: "",
+            catatan: "",
+        });
        
     }
 
