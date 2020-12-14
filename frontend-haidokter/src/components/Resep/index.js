@@ -12,7 +12,8 @@ const Resep = (props) => {
             <p>{`Nama Pasien: ${namaPasien}`}</p>
             <p>{`Nama Catatan: ${catatan}`}</p>
             <p>List Obat:</p>
-            <ObatList listObat={listObat}/>
+            {listObat.length === 0 ? 
+              <p>Obat kosong</p> : <ObatList listObat={listObat}/> } 
             <Button onClick={handleEdit} variant="success">
                 Edit
             </Button>
