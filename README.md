@@ -219,3 +219,24 @@ Menurut saya kekurangannya:
 - Membutuhkan pemahaman lebih terkait javascript extension
 - Tidak ramah bagi orang yang belum terbiasa coding
 - Kemungkinan error pada teknis saat membuat environtment react
+
+
+## Tutorial 8
+1. Ceritakan langkah - langkah yang kalian lakukan untuk solve LATIHAN no.1, dan mengapa kalian melakukan langkah - langkah tersebut?
+Dalam menyelesaikan soal nomor satu, saya perlu memahami bahwa permasalahan ini muncul ketika masuk kedalam handleSubmitAddResep. Pada function tersebut, selama page belum direfresh maka nilainya akan tetap sama dengan nilainya yang sebelumnya. Sehingga saya berpikiran untuk mencoba mengatur ulang nilai state menggunakan setState menjadi string kosong. Alhasil ketika tombol submit ditekan, maka di akhir fungsi handleSubmitAddResep akan mengatur ulang nilainya menjadi string kosong tanpa perlu direfresh terlebih dahulu.
+
+2. Jelaskan fungsi dari async dan await !
+Berdasarkan apa yang saya amati, async merupakan definisi dari method yang bisa dijalankan secara tidak langsung (asynchronous) sesuai dengan namanya. Hal ini mengakibatkan method lainnya yang bisa jadi berhubungan juga dapat dijalankan secara berkesinambungan. Sedangkan await merupakan suatu method yang berada dalam method async yang menunggu atau mengirim input menuju API.
+
+3. Masukkan jawaban dari Screenshot yang diperintahkan di halaman 8 pada Component Lifecycle pada pertanyaan ini.
+
+![alt text](https://github.com/yobelioe17/tutorial-apap/blob/feat/tutorial-8-frontend/frontend-haidokter/src/assets/nomor3.jpg?raw=true)
+
+4. Jelaskan fungsi dari componentDidMount, shouldComponentUpdate, componentDidUpdate, componentWillReceiveProps, componentWillUnmount.
+componenDidMount berfungsi untuk menghandle tindakan apa saja yang dilakukan ketika output sudah mulai dirender
+shouldComponentUpdate berfungsi sebagai indikator yang menentukan apakah nantinya perubahan akan dimunculkan atau tidak (diperlihatkan atau tidak)
+componentDidUpdate berfungsi untuk menghandle tindakan apa saja yang akan dilakukan apabila suatu component dilaukan update
+componentWillReceiveProps berfungsi untuk menghandle tindakan yang terjadi apabila ada perubahan pada props sebelum rendering terjadi
+componentWillUnmount berfungsi untuk menghandle tindakan apa saja sebelum component akan di unmount.
+Fungsi tersebut sangat berguna dalam penggunaan Hook di React.js. Hooks merupakan fungsi yang dapat membantu untuk “mengaitkan” state serta berbagai macam fitur-fitur lifecycle React dari function component. Dengan adanya Hooks, mampu memungkinkan coding menggunakan React tanpa adanya kelas.
+(sumber: https://id.reactjs.org/docs/hooks-overview.html#:~:text=Hooks%20merupakan%20fungsi%20yang%20memungkinkan,lifecycle%20React%20dari%20function%20component.&text=React%20menyediakan%20beberapa%20Hooks%20bawaan,behavior%20antara%20komponen%20yang%20berbeda)
